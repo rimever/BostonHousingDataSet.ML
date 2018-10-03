@@ -31,10 +31,11 @@ namespace BostonHousingDataSet.Core.Services
         {
             using (var writer = new StreamWriter(CleanedFilePath))
             {
-                writer.WriteLine(string.Join(",", BostonHousingData.EnumerableColumnNames().ToArray()));
+                writer.Write(string.Join(",", BostonHousingData.EnumerableColumnNames().ToArray()));
                 foreach (var data in EnumerableRawLine(RawFilePath))
                 {
-                    writer.WriteLine(ConvertToCommaLine(data));
+                    writer.WriteLine();
+                    writer.Write(ConvertToCommaLine(data));
                 }
 
                 writer.Flush();
@@ -64,7 +65,8 @@ namespace BostonHousingDataSet.Core.Services
 
                 if ((item.index - startIndex) % 2 == 1)
                 {
-                    yield return cacheText + item.value;
+                    string line = cacheText + item.value;
+                    yield return line;
                 }
                 else
                 {

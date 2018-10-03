@@ -62,7 +62,7 @@ namespace BostonHousingDataSet.Core.Services
             var pipeline = new LearningPipeline
             {
                 new TextLoader(dataPath).CreateFrom<BostonHousingData>(separator:','),
-                new ColumnCopier(nameof(BostonHousingData.MEDV), "Label"),
+                new ColumnCopier((nameof(BostonHousingData.MEDV), "Label")),
                 new ColumnConcatenator("Features",
                     nameof(BostonHousingData.CRIM),
                     nameof(BostonHousingData.ZIN),
