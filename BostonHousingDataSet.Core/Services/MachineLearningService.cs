@@ -33,6 +33,7 @@ namespace BostonHousingDataSet.Core.Services
             DataCleaningService cleaningService = new DataCleaningService();
             cleaningService.Clean();
             var model = await TrainAsync(cleaningService.CleanedFilePath, ModelPath);
+
             Evaluate(model, cleaningService.CleanedFilePath);
         }
 
